@@ -1,1 +1,3 @@
 # GraphMinds
+
+pip install langgraph
