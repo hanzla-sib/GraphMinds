@@ -22,7 +22,7 @@ chain=prompt | model
 
 while True:
     try:
-        user_input = input("Enter your question (or type 'exit' to quit): ")
+        user_input = input("Enter your question (or type 'exit'): ")
         if user_input.lower() == 'exit':
             break
         retriever_result = retriever.invoke(user_input)

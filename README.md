@@ -47,3 +47,33 @@ pip install langgraph
 - **Graph Visualization**: Displaying the graph structure using Mermaid diagrams
 - **Graph Invocation**: Running the compiled graph with input data and retrieving results
 - **State Processing**: How nodes can access and modify incoming state data
+
+## RAG Implementation
+
+This project also includes a Retrieval-Augmented Generation (RAG) implementation that allows you to ask questions about restaurant reviews.
+
+### Files
+
+- `vector.py`: This script reads the `restaurant_reviews.csv` file, creates embeddings using `OllamaEmbeddings` with the `llama3.1` model, and stores them in a ChromaDB vector store. The vector store is persisted to the `./chroma_db` directory.
+- `Rag.py`: This script loads the ChromaDB vector store and uses it as a retriever. It then creates a question-answering chain with a prompt that instructs an `OllamaLLM` model (`llama3.1`) to answer questions about a pizza restaurant based on the retrieved reviews. The script runs in a loop, allowing you to ask multiple questions.
+- `restaurant_reviews.csv`: A CSV file containing restaurant reviews with columns for Title, Date, Rating, and Review.
+
+### How to Run the RAG Application
+
+1.  **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Create the vector store:**
+    Run the `vector.py` script to create the ChromaDB vector store.
+    ```bash
+    python vector.py
+    ```
+
+3.  **Run the RAG application:**
+    Run the `Rag.py` script to start the interactive question-answering session.
+    ```bash
+    python Rag.py
+    ```
+    You can then enter your questions in the terminal. Type 'exit' to quit.
