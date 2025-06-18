@@ -1,6 +1,6 @@
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
-
+from vector import retriever
 model=OllamaLLM(
     model="llama3.1",
 )
@@ -25,9 +25,10 @@ while True:
         user_input = input("Enter your question (or type 'exit' to quit): ")
         if user_input.lower() == 'exit':
             break
+        retriever_result = retriever.invoke(user_input)
         result = chain.invoke(
             {
-                "context": "The pizza was delicious and the service was great. I loved the pepperoni pizza and the crust was perfect.",
+                "context": retriever_result,
                 "question": user_input
             }
         )
